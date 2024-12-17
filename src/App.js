@@ -4,7 +4,7 @@ import { BrowserRouter , Routes , Route , Link } from 'react-router-dom';
 
 //page components 
 import {Home} from './pages/Home/Home'
-import {Create} from './pages/Create/Create'
+import {Create} from './pages/Create/Create.js'
 import {Recipe} from './pages/Recipe/Recipe'
 import {Search} from './pages/Search/Search'
 
