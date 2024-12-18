@@ -21,7 +21,7 @@ export default function SearchBar() {
              id="search"
              onChange={
                 (e) => {setTerm(e.target.value) ;
-                console.log("Current Term:", e.target.value); // Debugging
+                // console.log("Current Term:", e.target.value); // Debugging
                 }
               }
              

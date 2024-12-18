@@ -60,6 +60,16 @@
       ],
       "method": "smoke it 24 hrs 75c temp",
       "cookingTime": "1440 minutes"
+    },
+    {
+      "id": "4ee7",
+      "title": "juju dhau",
+      "ingredients": [
+        "curd",
+        "sugar"
+      ],
+      "method": "leave it orvernight",
+      "cookingTime": "12 minutes"
     }
   ]
 }

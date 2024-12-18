@@ -18,6 +18,8 @@ export const useFetch = (url , method="GET") => {
 
   useEffect(() => {
     const controller = new AbortController()
+    console.log("Fetching URL:", url);
+
 
     const fetchData = async (fetchOptions) => {
       setIsPending(true)
@@ -33,6 +35,7 @@ export const useFetch = (url , method="GET") => {
         setData(data)
         setError(null)
       } catch (err) {
+        console.log(err);
         if (err.name === "AbortError") {
           console.log("the fetch was aborted")
         } else {
@@ -55,6 +58,7 @@ export const useFetch = (url , method="GET") => {
     }
 
   }, [url, options , method])
+//   console.log(data);
 
   return { data, isPending, error , postData}
 }
