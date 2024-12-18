@@ -6,7 +6,7 @@ import { BrowserRouter , Routes , Route , Link } from 'react-router-dom';
 import {Home} from './pages/Home/Home'
 import {Create} from './pages/Create/Create.js'
 import {Recipe} from './pages/Recipe/Recipe'
-import {Search} from './pages/Search/Search'
+import Search from './pages/Search/Search'
 
 //styles
 import './App.css'
