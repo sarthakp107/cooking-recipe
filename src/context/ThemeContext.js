@@ -4,15 +4,22 @@ import { createContext, useReducer } from "react";
 // Create context
 export const ThemeContext = createContext(); 
 
-const themeReducer = () => {
+const themeReducer = (state , aciton) => {
+  switch(aciton.type){
+    case 'CHANGE_COLOR' :
+      return {...state , color : aciton.payload}
 
+      default: 
+      return state
+  }
 }
 
 // Create ThemeProvider component
 export function ThemeProvider({ children }) { //children is the component that we surround it in index.js: in this case::: App
   
+  //  useReducer (function , initial state);
   const[state , dispatch] = useReducer(themeReducer,{
-    color : "blue"
+    color : "#58249c"
   });
 
   const changeColor = (color) => {
@@ -21,7 +28,7 @@ export function ThemeProvider({ children }) { //children is the component that w
 
 
   return (
-    <ThemeContext.Provider value={{ color: 'blue' }}>
+    <ThemeContext.Provider value={{ ...state , changeColor}}>
       {children}
     </ThemeContext.Provider>
   );

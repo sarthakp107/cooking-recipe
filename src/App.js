@@ -11,12 +11,14 @@ import Search from './pages/Search/Search'
 //styles
 import './App.css'
 import { NavBar } from './components/NavBar';
+import ThemeSelector from './components/ThemeSelector.js';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
       <NavBar/>
+      <ThemeSelector/>
       <Routes>
         <Route exact path='/' element={<Home/>}/>
         <Route path='/create' element={<Create/>}/>
