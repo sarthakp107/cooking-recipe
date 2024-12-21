@@ -31,7 +31,7 @@ export const Create = () => {
         if(data){
             goBackToHome('/');
         }
-    } , [data])
+    } , [data , goBackToHome])
 
     const handleAdd = (e) => {
         e.preventDefault();

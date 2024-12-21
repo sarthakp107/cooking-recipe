@@ -1,31 +1,29 @@
-import { useState, useEffect, use } from "react"
+import { useState, useEffect } from "react"
 
-export const useFetch = (url , method="GET") => {
+export const useFetch = (url, method = "GET") => {
   const [data, setData] = useState(null)
   const [isPending, setIsPending] = useState(false)
   const [error, setError] = useState(null)
-  const [options , setOptions] = useState(null)
+  const [options, setOptions] = useState(null)
 
   const postData = (postData) => {
-     setOptions({
-        method : "POST",
-        headers : {
-            "Content-Type": "application/json" //specifies what type of data we are sending on POST
-        },
-        body: JSON.stringify(postData) //converts js objects into JSON
-     })
+    setOptions({
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(postData)
+    })
   }
 
   useEffect(() => {
     const controller = new AbortController()
-    console.log("Fetching URL:", url);
-
 
     const fetchData = async (fetchOptions) => {
       setIsPending(true)
       
       try {
-        const res = await fetch(url,  {...fetchOptions, signal: controller.signal })
+        const res = await fetch(url, { ...fetchOptions, signal: controller.signal })
         if(!res.ok) {
           throw new Error(res.statusText)
         }
@@ -35,7 +33,6 @@ export const useFetch = (url , method="GET") => {
         setData(data)
         setError(null)
       } catch (err) {
-        console.log(err);
         if (err.name === "AbortError") {
           console.log("the fetch was aborted")
         } else {
@@ -45,20 +42,19 @@ export const useFetch = (url , method="GET") => {
       }
     }
 
-    if(method === "GET"){
-
-        fetchData()
+    // invoke the function
+    if (method === "GET") {
+      fetchData()
     }
-    if(method === "POST" && options){
-        fetchData(options)
+    if (method === "POST" && options) {
+      fetchData(options)
     }
 
     return () => {
       controller.abort()
     }
 
-  }, [url, options , method])
-//   console.log(data);
+  }, [url, method, options])
 
-  return { data, isPending, error , postData}
+  return { data, isPending, error, postData }
 }
