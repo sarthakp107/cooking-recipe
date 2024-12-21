@@ -12,10 +12,12 @@ import Search from './pages/Search/Search'
 import './App.css'
 import { NavBar } from './components/NavBar';
 import ThemeSelector from './components/ThemeSelector.js';
+import { useTheme } from './hooks/useTheme.js';
 
 function App() {
+  const {mode} = useTheme();
   return (
-    <div className="App">
+    <div className={`App ${mode}`}>
       <BrowserRouter>
       <NavBar/>
       <ThemeSelector/>

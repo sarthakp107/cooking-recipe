@@ -53,3 +53,12 @@ color: white;
     background-color: rebeccapurple;
     color: white;
       }
+
+      .recipe-list .card.dark {
+        background: #555;
+      }
+      .recipe-list .card.dark p,
+      .recipe-list .card.dark h3,
+      .recipe-list .card.dark div {
+        color: #e4e4e4;
+      }

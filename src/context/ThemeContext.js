@@ -8,6 +8,9 @@ const themeReducer = (state , aciton) => {
   switch(aciton.type){
     case 'CHANGE_COLOR' :
       return {...state , color : aciton.payload}
+    
+    case 'CHANGE_MODE' : 
+    return { ...state , mode : aciton.payload}
 
       default: 
       return state
@@ -19,16 +22,21 @@ export function ThemeProvider({ children }) { //children is the component that w
   
   //  useReducer (function , initial state);
   const[state , dispatch] = useReducer(themeReducer,{
-    color : "#58249c"
+    color : "#58249c",
+    mode : 'dark'
   });
 
   const changeColor = (color) => {
     dispatch({type : 'CHANGE_COLOR' , payload: color}) //type of state change , payload: data base the state to
   }
 
+  const changeMode = (mode) => {
+    dispatch({type : 'CHANGE_MODE' , payload : mode})
+  }
+
 
   return (
-    <ThemeContext.Provider value={{ ...state , changeColor}}>
+    <ThemeContext.Provider value={{ ...state , changeColor , changeMode}}>
       {children}
     </ThemeContext.Provider>
   );
