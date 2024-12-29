@@ -70,6 +70,18 @@
       ],
       "method": "leave it orvernight",
       "cookingTime": "12 minutes"
+    },
+    {
+      "id": "bdbe",
+      "title": "Potato",
+      "ingredients": [
+        "garlic",
+        "potato",
+        "parsley",
+        "butter"
+      ],
+      "method": "pan fry fry fry",
+      "cookingTime": "10 minutes"
     }
   ]
 }

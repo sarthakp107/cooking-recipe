@@ -1,17 +1,38 @@
-import React from 'react'
-import { useFetch } from '../../hooks/useFetch'
-import RecipeList from '../../components/RecipeList';
+import React, { useEffect, useState } from 'react'
+import { projectFirestore } from '../../firebase/config'
+import RecipeList from '../../components/RecipeList'
 
-export  const Home = () => {
 
-    const {data: recipes, isPending , error} = useFetch("http://localhost:3000/recipes");
+export default function  Home() {
+
+  const [data,setData] = useState(null);
+  const [isPending , setIsPending] = useState(false);
+  const [error , setError] = useState(false);
+
+useEffect(() => {
+//start the fetching of the data
+setIsPending(true);
+
+projectFirestore.collection('recipes').get().then((snapshot) =>{
+  if(snapshot.empty){
+    setError("No recipes found...");
+    setIsPending(false);
+  }
+  else{
+    let result = [];
+    snapshot.docs.forEach(doc => {
+      console.log(doc);
+    })
+  }
+} );
+}, [])
 
   return (
     <div className='home'>
         {isPending && <div className='loading'>Loading!</div>}
         {error && <div className='error'> Error{error}</div>}
         <div className="card">
-            {recipes && <RecipeList recipes= {recipes}/>}
+            {data && <RecipeList recipes= {data}/>}
         </div>
     </div>
   )
