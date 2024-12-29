@@ -19,12 +19,18 @@ projectFirestore.collection('recipes').get().then((snapshot) =>{
     setIsPending(false);
   }
   else{
-    let result = [];
+    let results = [];
     snapshot.docs.forEach(doc => {
-      console.log(doc);
+      results.push({ id: doc.id, ...doc.data});
     })
+    // console.log(results);
+    setData(results);
+    setIsPending(false);
   }
-} );
+}).catch(err => {
+  setError(err.message);
+  setIsPending(false);
+})
 }, [])
 
   return (
