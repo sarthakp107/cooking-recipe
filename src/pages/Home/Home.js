@@ -13,7 +13,7 @@ useEffect(() => {
 //start the fetching of the data
 setIsPending(true);
 
-projectFirestore.collection('recipes').get().then((snapshot) =>{
+projectFirestore.collection('recipes').get().then(snapshot =>{
   if(snapshot.empty){
     setError("No recipes found...");
     setIsPending(false);
@@ -21,7 +21,7 @@ projectFirestore.collection('recipes').get().then((snapshot) =>{
   else{
     let results = [];
     snapshot.docs.forEach(doc => {
-      results.push({ id: doc.id, ...doc.data});
+      results.push({ ...doc.data() ,id: doc.id });
     })
     // console.log(results);
     setData(results);

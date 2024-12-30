@@ -11,7 +11,7 @@ export default function RecipeList({recipes}) {
       }
   return (
     <div className='recipe-list'>
-        {recipes.map((recipe) => (
+        {recipes.map(recipe => (
                     <div key={recipe.id} className={`card ${mode}`}>
                           <h3>{recipe.title}</h3>
                            <p>Time Taken : {recipe.cookingTime}</p>
