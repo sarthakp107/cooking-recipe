@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useFetch } from '../../hooks/useFetch';
 import { useNavigate } from 'react-router-dom';
 import './Create.css'
+import { projectFirestore } from '../../firebase/config';
 
 
 
@@ -15,23 +15,25 @@ export const Create = () => {
     const goBackToHome = useNavigate()
     
 
-    const {postData , data , error} = useFetch("http://localhost:3000/recipes" , 'POST')
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault(); //prevent refresh
-        postData({
+        const doc = {
             title,
             ingredients,
             method,
             cookingTime: cookingTime + ' minutes'
-        })
+        }
+
+        try{
+            await projectFirestore.collection('recipes').add(doc);
+            goBackToHome('/');
+        }catch(err){
+            console.log(err)
+        }
     }
 
-    useEffect(() => {
-        if(data){
-            goBackToHome('/');
-        }
-    } , [data , goBackToHome])
+    
 
     const handleAdd = (e) => {
         e.preventDefault();
